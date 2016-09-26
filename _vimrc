@@ -26,8 +26,6 @@ set novisualbell 	" 关闭使用可视响铃代替呼叫
 set t_vb= 		" 置空错误铃声的终端代码
 set magic 		" 设置魔术
 set hidden 		" 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
-set guioptions-=T 	" 隐藏工具栏
-set guioptions-=m 	" 隐藏菜单栏
 set smartindent 	" 开启新行时使用智能自动缩进
 set backspace=indent,eol,start
 			" 不设定在插入状态无法用退格键和 Delete 键删除回车符
@@ -39,6 +37,17 @@ set foldenable 		" 开始折叠
 set foldmethod=syntax 	" 设置语法折叠
 set foldcolumn=0 	" 设置折叠区域的宽度
 setlocal foldlevel=1	 " 设置折叠层数为
+
+" <F2>显示/隐藏工具栏&菜单栏
+set guioptions-=m
+set guioptions-=T
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+        \set guioptions-=T <Bar>
+        \set guioptions-=m <bar>
+    \else <Bar>
+        \set guioptions+=T <Bar>
+        \set guioptions+=m <Bar>
+    \endif<CR>
 
 " return OS type, eg: windows, or linux, mac, et.st..
 function! MySys()
